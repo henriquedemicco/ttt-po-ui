@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 
 import {
   PoMenuItem,
@@ -22,11 +22,25 @@ import {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  readonly menus: Array<PoMenuItem> = [
-    { label: 'Home', action: this.onClick.bind(this) },
+
+  router = inject(Router);
+  
+  menuItemSelected?: string;
+
+  menus: Array<PoMenuItem> = [
+    { label: 'Início', icon: 'an an-user', action: this.navigateTo.bind(this, "home"), shortLabel: 'Início' },
+    {
+      label: 'Componentes',
+      icon: 'an an-share',
+      shortLabel: 'Componentes',
+      subItems: [
+        { label: 'Select', action: this.navigateTo.bind(this, "select"), },
+        { label: 'Switch', action: this.navigateTo.bind(this, "switch"), }
+      ]
+    }
   ];
 
-  private onClick() {
-    alert('Clicked in menu item');
+  private navigateTo(destination: string) {
+    this.router.navigate([destination]);
   }
 }
