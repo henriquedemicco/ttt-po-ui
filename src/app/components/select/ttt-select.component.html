@@ -1,0 +1,20 @@
+<select class="ttt-select"
+    [value]="value"
+    [class.invalid]="true"
+    [name]="name()"
+    (change)="onChange($event)"
+    (blur)="onBlur()"
+    (focus)="emitEvent($event)"
+    [disabled]="disabled()"
+>
+    @if (instruction()) {
+        <option value="" selected disabled>{{ instruction() }}</option>
+    }
+    @for (option of options(); track $index) {
+        <option [disabled]="option.isDisabled" [value]="option.value">{{ option.label }}</option>
+    }
+</select>
+    
+@if (icon()) {
+    <i [class]="'input-icon ' + icon()"></i>
+}

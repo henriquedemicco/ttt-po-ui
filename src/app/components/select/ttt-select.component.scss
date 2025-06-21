@@ -1,0 +1,82 @@
+
+// =============================================================================
+// CUSTOM PROPERTIES - SELECT ESPECÍFICO
+// =============================================================================
+
+:host {
+  position: relative;
+  padding: 0.5em 0.5em;
+  // Propriedades específicas do Select usando tokens globais
+  --select-text-color: var(--color-neutral-dark-90);
+  --select-text-color-empty: var(--color-neutral-light-30);
+  --select-border-color: var(--color-neutral-dark-70);
+  --select-background: var(--color-neutral-light-05);
+
+  // Spacing específico do Select
+  --select-padding-horizontal: .5em;
+  --select-padding-vertical: .7em;
+
+  // Estados específicos do Select
+  --select-color-hover: var(--color-action-hover);
+  --select-background-hover: var(--color-brand-01-lightest);
+  --select-color-focused: var(--color-action-default);
+  --select-outline-color-focused: var(--color-action-focus);
+  --select-color-disabled: var(--color-action-disabled);
+  --select-background-disabled: var(--color-neutral-light-20);
+  --select-color-error: var(--color-feedback-negative-base);
+
+  &.ng-invalid {
+    .ttt-select {
+      border-color: var(--select-color-error) !important;
+    }
+    .input-icon {
+      color: var(--select-color-error) !important;
+    }
+  }
+}
+
+
+// =============================================================================
+// COMPONENTE SELECT
+// =============================================================================
+
+.ttt-select {
+  width: 100%;
+  min-height: var(--target-size-aaa);
+  padding: var(--select-padding-vertical) var(--select-padding-horizontal);
+  color: var(--select-text-color);
+  background-color: var(--select-background);
+  border: 1px solid var(--select-border-color);
+  border-radius: 6px;
+  
+  font-family: var(--font-family-text);
+  font-size: var(--font-size-default);
+  
+  cursor: pointer;
+  appearance: none;
+  
+  &:focus {
+    border-color: var(--color-action-focused);
+    outline: 2px solid var(--color-action-focus);
+    outline-offset: 2px;
+  }
+  
+  &:disabled {
+    background-color: var(--color-neutral-light-20);
+    color: var(--color-action-disabled);
+    cursor: not-allowed;
+  }
+
+  &:hover {
+    background-color: var(--select-background-hover);
+  }
+}
+
+.input-icon {
+  position: absolute;
+  right: 1em;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--select-border-color);
+}
