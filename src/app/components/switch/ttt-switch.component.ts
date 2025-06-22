@@ -49,6 +49,13 @@ export class SwitchComponent implements ControlValueAccessor {
     this.onTouchedFn();
   }
 
+  onKeydown(event: KeyboardEvent): void {
+    if (event.code === 'Enter' && !this.disabled()) {
+      const target = event.target as HTMLInputElement;
+      target.click();
+    }
+  }
+
   emitEvent(event: Event): void {
     this.emitedEvent.emit(event);
   }
