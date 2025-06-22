@@ -5,7 +5,7 @@
                 class="po-md-12"
                 [p-options]="inputedOptions"
                 p-icon="an an-caret-down"
-                [p-disabled]="inputedOptions.length === 0"
+                [p-disabled]="isDisabled"
                 (emitedEvent)="handleNewReceivedEvent($event)"
             />
         </div>
@@ -29,6 +29,12 @@
                         <po-switch class="po-md-2" name="optionDisabled" [(ngModel)]="option!.isDisabled" p-label="Disabled"> </po-switch>
                     </div>
                     <div class="po-row">
+                        <po-button
+                            class="po-md-1"
+                            [p-icon]="'an an-trash'"
+                            (p-click)="removeOptions()"
+                        >
+                        </po-button>
                         <po-button class="po-lg-3 po-md-4" p-label="Add Option" [p-disabled]="fOption.invalid!" (p-click)="addOption()">
                         </po-button>
                     </div>

@@ -54,7 +54,6 @@ export class SelectComponent implements ControlValueAccessor {
     this.value = target.value;
     this.onChangeFn(this.value);
     this.selectedValue.emit(this.value);
-    console.log(this.value);
   }
 
   onBlur(): void {

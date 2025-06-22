@@ -6,6 +6,7 @@
 :host {
   position: relative;
   padding: 0.5em 0.5em;
+  
   // Propriedades específicas do Select usando tokens globais
   --select-text-color: var(--color-neutral-dark-90);
   --select-text-color-empty: var(--color-neutral-light-30);
@@ -57,7 +58,7 @@
   
   &:focus {
     border-color: var(--color-action-focused);
-    outline: 2px solid var(--color-action-focus);
+    outline: var(--border-width-lg) solid var(--color-action-focus);
     outline-offset: 2px;
   }
   
@@ -69,7 +70,13 @@
 
   &:hover {
     background-color: var(--select-background-hover);
+    border-color: var(--select-color-hover);
+    + .input-icon {
+      color: var(--select-color-hover);
+    }
   }
+
+
 }
 
 .input-icon {

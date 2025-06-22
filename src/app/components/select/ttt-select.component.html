@@ -2,8 +2,8 @@
     [value]="value"
     [class.invalid]="true"
     [name]="name()"
-    (change)="onChange($event)"
-    (blur)="onBlur()"
+    (change)="onChange($event); emitEvent($event)"
+    (blur)="onBlur(); emitEvent($event)"
     (focus)="emitEvent($event)"
     [disabled]="disabled()"
 >
