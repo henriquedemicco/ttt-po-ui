@@ -2,10 +2,13 @@
     (click)="disabled() ? $event.preventDefault() : null"
 >
     @if (label()) {
-       <div class="ttt-label">{{label()}}</div>
+       <label [for]="switchId()" class="ttt-label">{{label()}}</label>
     }
     <label class="ttt-switch" [class.disabled]="disabled()">
-      <input type="checkbox" 
+      <input type="checkbox"
+        role="switch"
+        [id]="switchId()"
+        [attr.aria-checked]="value()" 
         [checked]="value()"
         [disabled]="disabled()"
         (change)="onChange($event); emitEvent($event)"

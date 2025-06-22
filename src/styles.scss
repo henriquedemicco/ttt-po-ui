@@ -43,6 +43,7 @@ p {
 }
 
 .ttt-label {
+  display: block;
   font-family: var(--font-family-theme);
   font-size: var(--font-size-default);
   line-height: var(--line-height-md);

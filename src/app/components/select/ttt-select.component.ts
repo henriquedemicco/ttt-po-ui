@@ -1,4 +1,4 @@
-import { Component, effect, forwardRef, inject, input, output } from '@angular/core';
+import { Component, effect, forwardRef, inject, input, output, signal } from '@angular/core';
 import { PoSelectOption } from './interfaces/po-select-option.interface';
 import { PoModule } from '@po-ui/ng-components';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
@@ -20,6 +20,7 @@ export class SelectComponent implements ControlValueAccessor {
 
   options = input<PoSelectOption[]>([], { alias: 't-options' });
   icon = input<string>('', { alias: 't-icon' });
+  idSelect = signal(`ttt-switch-${Math.random().toString(36).substring(2, 9)}`);
   instruction = input<string>('', { alias: 't-instruction' });
   value: string = "";
   name = input<string>('', { alias: 't-name' });

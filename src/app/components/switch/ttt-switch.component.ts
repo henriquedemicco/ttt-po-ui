@@ -17,6 +17,7 @@ import { PoModule } from '@po-ui/ng-components';
 })
 export class SwitchComponent implements ControlValueAccessor {
   label = input<string>('', { alias: 't-label' });
+  switchId = signal(`ttt-switch-${Math.random().toString(36).substring(2, 9)}`);
   disabled = input<boolean>(false, { alias: 't-disabled' });
 
   value = signal<boolean>(false);

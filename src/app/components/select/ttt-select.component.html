@@ -1,5 +1,5 @@
 <select class="ttt-select"
-    id="ttt-select"
+    [id]="idSelect()"
     [name]="name()"
     (change)="onChange($event); emitEvent($event)"
     (blur)="onBlur(); emitEvent($event)"
