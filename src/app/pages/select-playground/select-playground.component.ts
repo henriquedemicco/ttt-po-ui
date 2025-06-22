@@ -4,20 +4,30 @@ import { SelectComponent } from '../../components/select/ttt-select.component';
 import { PoSelectOption } from '../../components/select/interfaces/po-select-option.interface';
 import { FormBuilder, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SelectState } from '../../components/select/interfaces/select-state.interface';
+import { SwitchComponent } from '../../components/switch/ttt-switch.component';
 
 @Component({
   selector: 'app-select-playground',
-  imports: [PoModule, FormsModule, ReactiveFormsModule,SelectComponent],
+  imports: [
+    PoModule, 
+    FormsModule, 
+    ReactiveFormsModule,
+    SelectComponent,
+    SwitchComponent
+  ],
   templateUrl: './select-playground.component.html',
   styleUrl: './select-playground.component.scss',
 })
 export class SelectPlaygroundComponent {
 
   private formBuilder = inject(FormBuilder);
+  @ViewChild('tdForm') tdForm?: NgForm;
+
   selectedValue?: string | null;
   exampleTemplateFormValue?: string | null;
   emitedEventType?: string;
   selectInstruction: string = "Selecione uma opção";
+  isOptionDisabled: boolean = false;
 
   selectState: SelectState = {
     fillingInstruction: "",
@@ -36,15 +46,15 @@ export class SelectPlaygroundComponent {
     { label: 'Disabled Option', value: null, isDisabled: true }
   ];
 
-  @ViewChild('tdForm') tdForm?: NgForm;
 
   addOption() {
-    this.inputedOptions.push(this.option!);
+    this.option!.isDisabled = this.isOptionDisabled;
+    this.inputedOptions.push({...this.option!});
     this.resetDefaultOption();
   }
 
   resetDefaultOption() {
-    this.option = { label: '', value: null, isDisabled: false };
+    this.option = { label: '', value: null, isDisabled: this.isOptionDisabled };
   }
 
   removeOptions() {
@@ -64,7 +74,7 @@ export class SelectPlaygroundComponent {
 
   handleNewReceivedEvent(event: Event | FocusEvent) {
     this.emitedEventType = event.type;
-    if (event instanceof Event) {
+    if (!(event instanceof FocusEvent)) {
       this.selectedValue = (event.target as HTMLInputElement).value;
     }
   }

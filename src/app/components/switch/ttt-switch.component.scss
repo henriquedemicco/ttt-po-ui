@@ -1,5 +1,6 @@
 :host {
   display: block;
+  padding: 0 0.5rem 0.5rem 0.5rem;
 }
 
 .ttt-switch {
@@ -16,8 +17,8 @@
 
   --border-width-md: 1px;
   --border-width-lg: 2px;
-  --key-size: 1.5rem; 
-  --track-height: 1rem; 
+  --key-size: 1.5rem;
+  --track-height: 1rem;
   --track-width: 3rem;
 
   &.disabled {
@@ -59,7 +60,6 @@
   cursor: pointer;
 }
 
-
 .ttt-switch-slider::before {
   content: "";
   position: absolute;
@@ -78,7 +78,6 @@
   align-items: center;
   justify-content: center;
 }
-
 
 .ttt-switch-slider::after {
   content: "";

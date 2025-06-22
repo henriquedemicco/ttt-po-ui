@@ -1,7 +1,97 @@
 <po-page-default p-title="Componente Switch">
-    <ttt-switch
-        label="Teste"
-        [p-disabled]="true"
-        (valueChanged)="teste($event)"
-    />
+  <div class="sample-container">
+    <form #componentDisplayForm="ngForm">
+      <div class="po-row">
+        <ttt-switch 
+            [t-label]="switchState.label"
+            [t-disabled]="switchState.isDisabled"
+            name="playground_switch"
+            [(ngModel)]="selectedValue"
+            (emitedEvent)="handleNewReceivedEvent($event)"
+        />
+      </div>
+    </form>
+
+    <hr />
+
+    <div class="po-row">
+      <po-info class="po-md-6" p-label="Value" [p-value]="'' + selectedValue!">
+      </po-info>
+
+      <po-info class="po-md-6" p-label="Event" [p-value]="emitedEventType!">
+      </po-info>
+    </div>
+    <po-tabs>
+      <po-tab p-label="States" [p-active]="true">
+        <form #stateManagerForm="ngForm">
+          <div class="po-row">
+            <po-input
+              class="po-md-10"
+              name="switchLabel"
+              [(ngModel)]="switchState.label"
+              p-label="Label"
+            >
+            </po-input>
+            <ttt-switch
+              class="po-md-2"
+              t-label="Disabled"
+              name="switchDisabled"
+              [(ngModel)]="switchState.isDisabled"
+            >
+            </ttt-switch>
+          </div>
+          <div class="po-row">
+            <po-button
+              class="po-lg-3 po-md-4"
+              p-label="Reset"
+              [p-disabled]="stateManagerForm.invalid!"
+              (p-click)="resetStateManagerForm()"
+            >
+            </po-button>
+          </div>
+        </form>
+      </po-tab>
+
+      <po-tab p-label="Template-Driven Form">
+        <form #tdForm="ngForm">
+          <div class="po-row">
+            <ttt-switch
+              t-label="TDF - Switch"
+              name="tdf_switch"
+              [(ngModel)]="exampleTemplateFormValue"
+            />
+          </div>
+          <div class="po-row">
+            <po-button
+              class="po-lg-3 po-md-4"
+              p-label="Submit"
+              [p-disabled]="tdForm.invalid!"
+              (p-click)="submitTemplateDrivenForm()"
+            >
+            </po-button>
+          </div>
+        </form>
+      </po-tab>
+
+      <po-tab p-label="Reactive Form">
+        <form [formGroup]="reactiveForm">
+          <div class="po-row">
+            <ttt-switch
+              t-label="RF - Switch"
+              formControlName="reactiveSwitch"
+            />
+          </div>
+          <div class="po-row">
+            <po-button
+              class="po-lg-3 po-md-4"
+              p-label="Submit"
+              [p-disabled]="reactiveForm.invalid!"
+              (p-click)="subtmitReactiveForm()"
+            >
+            </po-button>
+          </div>
+        </form>
+      </po-tab>
+    </po-tabs>
+  </div>
 </po-page-default>

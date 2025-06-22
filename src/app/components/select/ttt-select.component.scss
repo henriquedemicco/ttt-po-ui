@@ -1,21 +1,15 @@
-
-// =============================================================================
-// CUSTOM PROPERTIES - SELECT ESPECÍFICO
-// =============================================================================
-
 :host {
   display: block;
   padding: 0.5em 0.5em;
   position: relative;
-  // Propriedades específicas do Select usando tokens globais
   --select-text-color: var(--color-neutral-dark-90);
   --select-text-color-empty: var(--color-neutral-light-30);
   --select-border-color: var(--color-neutral-dark-70);
   --select-background: var(--color-neutral-light-05);
 
   // Spacing específico do Select
-  --select-padding-horizontal: .5em;
-  --select-padding-vertical: .7em;
+  --select-padding-horizontal: 0.5em;
+  --select-padding-vertical: 0.7em;
 
   // Estados específicos do Select
   --select-color-hover: var(--color-action-hover);
@@ -36,11 +30,6 @@
   }
 }
 
-
-// =============================================================================
-// COMPONENTE SELECT
-// =============================================================================
-
 .ttt-select {
   width: 100%;
   min-height: var(--target-size-aaa);
@@ -49,19 +38,19 @@
   background-color: var(--select-background);
   border: 1px solid var(--select-border-color);
   border-radius: 6px;
-  
+
   font-family: var(--font-family-text);
   font-size: var(--font-size-default);
-  
+
   cursor: pointer;
   appearance: none;
-  
+
   &:focus {
     border-color: var(--color-action-focused);
     outline: var(--border-width-lg) solid var(--color-action-focus);
     outline-offset: 2px;
   }
-  
+
   &:disabled {
     background-color: var(--color-neutral-light-20);
     color: var(--color-action-disabled);
@@ -75,8 +64,6 @@
       color: var(--select-color-hover);
     }
   }
-
-
 }
 
 .input-icon {

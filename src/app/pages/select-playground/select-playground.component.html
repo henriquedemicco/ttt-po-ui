@@ -1,105 +1,161 @@
 <po-page-default p-title="Componente Select">
-    <div class="sample-container">
+  <div class="sample-container">
+    <form #componentDisplayForm="ngForm">
+      <div class="po-row">
+        <ttt-select
+          class="po-md-12"
+          [t-options]="inputedOptions"
+          name="playground_select"
+          [(ngModel)]="selectedValue"
+          t-icon="an an-caret-down"
+          [t-instruction]="selectState.fillingInstruction"
+          [required]="selectState.isRequired"
+          [t-disabled]="selectState.isDisabled"
+          (emitedEvent)="handleNewReceivedEvent($event)"
+        />
+      </div>
+    </form>
 
-        <form #componentDisplayForm="ngForm">
-            <div class="po-row">
-                <ttt-select
-                    class="po-md-12"
-                    [p-options]="inputedOptions"
-                    name="playgrund_select"
-                    [(ngModel)]="selectedValue"
-                    p-icon="an an-caret-down"
-                    [p-instruction]="selectState.fillingInstruction"
-                    [required]="selectState.isRequired"
-                    [p-disabled]="selectState.isDisabled"
-                    (emitedEvent)="handleNewReceivedEvent($event)"
-                />
-            </div>
-        </form>
+    <hr />
 
-        <hr/>
+    <div class="po-row">
+      <po-info class="po-md-6" p-label="Value" [p-value]="selectedValue!">
+      </po-info>
 
-        <div class="po-row">
-            <po-info class="po-md-6" p-label="Value" [p-value]="selectedValue!"> </po-info>
-
-            <po-info class="po-md-6" p-label="Event" [p-value]="emitedEventType!"> </po-info>
-        </div>
-        <po-tabs>
-            <po-tab [p-active]="true" p-label="Options">
-                <form #addingOptionsForm="ngForm">
-                    <div class="po-row">
-                        <po-input class="po-md-4" name="optionLabel" [(ngModel)]="option!.label" p-label="Option Label" p-required>
-                        </po-input>
-    
-                        <po-input class="po-md-4" name="optionValue" [(ngModel)]="option!.value" p-label="Option Value" p-required>
-                        </po-input>
-                        <po-switch class="po-md-2" name="optionDisabled" [(ngModel)]="option!.isDisabled" p-label="Disabled"> </po-switch>
-                    </div>
-                    <div class="po-row">
-                        <po-button
-                            class="po-md-1"
-                            [p-icon]="'an an-trash'"
-                            (p-click)="removeOptions()"
-                        >
-                        </po-button>
-                        <po-button class="po-lg-3 po-md-4" p-label="Add Option" [p-disabled]="addingOptionsForm.invalid!" (p-click)="addOption()">
-                        </po-button>
-                    </div>
-                </form>
-            </po-tab>
-
-            <po-tab p-label="States">
-                <form #stateManagerForm="ngForm">
-                    <div class="po-row">
-                        <po-input class="po-md-8" name="optionInstruction" [(ngModel)]="selectState.fillingInstruction" p-label="Filling Instruction">
-                        </po-input>
-                        <po-switch class="po-md-2" name="optionDisabled" [(ngModel)]="selectState.isDisabled" p-label="Disabled"> </po-switch>
-                        <po-switch class="po-md-2" name="optionRequired" [(ngModel)]="selectState.isRequired" p-label="Required"> </po-switch>
-                    </div>
-                    <div class="po-row">
-                        <po-button class="po-lg-3 po-md-4" p-label="Reset" [p-disabled]="stateManagerForm.invalid!" (p-click)="resetStateManagerForm()">
-                        </po-button>
-                    </div>
-                </form>
-            </po-tab>
-
-            <po-tab p-label="Template-Driven Form">
-                <form #tdForm="ngForm">
-                    <div class="po-row">
-                        <ttt-select
-                            class="po-md-12"
-                            name="tdf_select"
-                            [p-options]="inputedOptions"
-                            required
-                            p-instruction="Selecione uma opção"
-                            p-icon="an an-caret-down"
-                            [(ngModel)]="exampleTemplateFormValue"
-                        />
-                    </div>
-                    <div class="po-row">
-                        <po-button class="po-lg-3 po-md-4" p-label="Submit" [p-disabled]="tdForm.invalid!" (p-click)="submitTemplateDrivenForm()">
-                        </po-button>
-                    </div>
-                </form>
-            </po-tab>
-
-            <po-tab p-label="Reactive Form">
-                <form [formGroup]="reactiveForm" (ngSubmit)="subtmitReactiveForm()">
-                    <div class="po-row">
-                        <ttt-select
-                            class="po-md-12"
-                            formControlName="reactiveSelect"
-                            [p-options]="inputedOptions"
-                            p-instruction="Selecione uma opção"
-                            p-icon="an an-caret-down"
-                        />
-                    </div>
-                    <div class="po-row">
-                        <po-button class="po-lg-3 po-md-4" p-label="Submit" [p-disabled]="reactiveForm.invalid!" (p-click)="subtmitReactiveForm()">
-                        </po-button>
-                    </div>
-                </form>
-            </po-tab>
-        </po-tabs>
+      <po-info class="po-md-6" p-label="Event" [p-value]="emitedEventType!">
+      </po-info>
     </div>
+    <po-tabs>
+      <po-tab [p-active]="true" p-label="Options">
+        <form #addingOptionsForm="ngForm">
+          <div class="po-row">
+            <po-input
+              class="po-md-4"
+              name="optionLabel"
+              [(ngModel)]="option!.label"
+              p-label="Option Label"
+              p-required
+            >
+            </po-input>
+
+            <po-input
+              class="po-md-4"
+              name="optionValue"
+              [(ngModel)]="option!.value"
+              p-label="Option Value"
+              p-required
+            >
+            </po-input>
+            <ttt-switch
+              class="po-md-2"
+              name="optionDisabled"
+              [(ngModel)]="isOptionDisabled"
+              t-label="Disabled"
+            >
+            </ttt-switch>
+          </div>
+          <div class="po-row">
+            <po-button
+              class="po-md-1"
+              [p-icon]="'an an-trash'"
+              (p-click)="removeOptions()"
+            >
+            </po-button>
+            <po-button
+              class="po-lg-3 po-md-4"
+              p-label="Add Option"
+              [p-disabled]="addingOptionsForm.invalid!"
+              (p-click)="addOption()"
+            >
+            </po-button>
+          </div>
+        </form>
+      </po-tab>
+
+      <po-tab p-label="States">
+        <form #stateManagerForm="ngForm">
+          <div class="po-row">
+            <po-input
+              class="po-md-8"
+              name="optionInstruction"
+              [(ngModel)]="selectState.fillingInstruction"
+              p-label="Filling Instruction"
+            >
+            </po-input>
+            <ttt-switch
+              class="po-md-2"
+              name="optionDisabled"
+              [(ngModel)]="selectState.isDisabled"
+              t-label="Disabled"
+            >
+            </ttt-switch>
+            <ttt-switch
+              class="po-md-2"
+              name="optionRequired"
+              [(ngModel)]="selectState.isRequired"
+              t-label="Required"
+            >
+            </ttt-switch>
+          </div>
+          <div class="po-row">
+            <po-button
+              class="po-lg-3 po-md-4"
+              p-label="Reset"
+              [p-disabled]="stateManagerForm.invalid!"
+              (p-click)="resetStateManagerForm()"
+            >
+            </po-button>
+          </div>
+        </form>
+      </po-tab>
+
+      <po-tab p-label="Template-Driven Form">
+        <form #tdForm="ngForm">
+          <div class="po-row">
+            <ttt-select
+              class="po-md-12"
+              name="tdf_select"
+              [t-options]="inputedOptions"
+              required
+              t-instruction="Selecione uma opção"
+              t-icon="an an-caret-down"
+              [(ngModel)]="exampleTemplateFormValue"
+            />
+          </div>
+          <div class="po-row">
+            <po-button
+              class="po-lg-3 po-md-4"
+              p-label="Submit"
+              [p-disabled]="tdForm.invalid!"
+              (p-click)="submitTemplateDrivenForm()"
+            >
+            </po-button>
+          </div>
+        </form>
+      </po-tab>
+
+      <po-tab p-label="Reactive Form">
+        <form [formGroup]="reactiveForm">
+          <div class="po-row">
+            <ttt-select
+              class="po-md-12"
+              formControlName="reactiveSelect"
+              [t-options]="inputedOptions"
+              t-instruction="Selecione uma opção"
+              t-icon="an an-caret-down"
+            />
+          </div>
+          <div class="po-row">
+            <po-button
+              class="po-lg-3 po-md-4"
+              p-label="Submit"
+              [p-disabled]="reactiveForm.invalid!"
+              (p-click)="subtmitReactiveForm()"
+            >
+            </po-button>
+          </div>
+        </form>
+      </po-tab>
+    </po-tabs>
+  </div>
 </po-page-default>

@@ -18,13 +18,12 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl } from '@angular/for
 })
 export class SelectComponent implements ControlValueAccessor {
 
-  options = input<PoSelectOption[]>([], { alias: 'p-options' });
-  icon = input<string>('', { alias: 'p-icon' });
-  instruction = input<string>('', { alias: 'p-instruction' });
+  options = input<PoSelectOption[]>([], { alias: 't-options' });
+  icon = input<string>('', { alias: 't-icon' });
+  instruction = input<string>('', { alias: 't-instruction' });
   value: string = "";
-  name = input<string>('', { alias: 'p-name' });
-  disabled = input<boolean>(false, { alias: 'p-disabled' });
-  selectedValue = output<string | number>();
+  name = input<string>('', { alias: 't-name' });
+  disabled = input<boolean>(false, { alias: 't-disabled' });
   emitedEvent = output<Event>();
 
   constructor() {
@@ -51,7 +50,6 @@ export class SelectComponent implements ControlValueAccessor {
   private resetToInstruction(): void {
     this.value = '';
     this.onChangeFn('');
-    this.selectedValue.emit('');
   }
 
   writeValue(value: string): void {
@@ -70,7 +68,6 @@ export class SelectComponent implements ControlValueAccessor {
     const target = event.target as HTMLSelectElement;
     this.value = target.value;
     this.onChangeFn(this.value || null);
-    this.selectedValue.emit(this.value);
   }
 
   onBlur(): void {

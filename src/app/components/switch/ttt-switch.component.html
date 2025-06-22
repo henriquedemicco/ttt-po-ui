@@ -5,8 +5,11 @@
        <div class="ttt-label">{{label()}}</div>
     }
     <label class="ttt-switch" [class.disabled]="disabled()">
-      <input type="checkbox" (change)="value = !value" />
+      <input type="checkbox" 
+        (change)="onChange($event); emitEvent($event)"
+        (blur)="onBlur(); emitEvent($event)"
+      />
       <span class="ttt-switch-slider"></span>
-      <span class="ttt-switch-label">{{value}}</span>
+      <span class="ttt-switch-label">{{value()}}</span>
     </label>
 </div>
