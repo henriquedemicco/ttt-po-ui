@@ -5,6 +5,11 @@
   padding: 0;
 }
 
+:root {
+  font-family: var(--font-family-theme);
+  font-size: var(--font-size-default);
+}
+
 .sample-container {
   box-shadow: 0 10px 6px -6px #0003;
   -moz-box-shadow: 0 10px 6px -6px rgba(0, 0, 0, 0.2);
@@ -18,4 +23,17 @@
 
 .po-page-content {
   background-color: var(--color-neutral-light-05);
+}
+
+.ttt-field-container-content {
+  --padding: var(--spacing-xs) 0;
+}
+
+.ttt-label {
+  font-family: var(--font-family-theme);
+  font-size: var(--font-size-default);
+  line-height: var(--line-height-md);
+  color: var(--color-neutral-dark-90);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: .5rem;
 }

@@ -1,0 +1,12 @@
+<div class="ttt-field-container" 
+    (click)="disabled() ? $event.preventDefault() : null"
+>
+    @if (label()) {
+       <div class="ttt-label">{{label()}}</div>
+    }
+    <label class="ttt-switch" [class.disabled]="disabled()">
+      <input type="checkbox" (change)="value = !value" />
+      <span class="ttt-switch-slider"></span>
+      <span class="ttt-switch-label">{{value}}</span>
+    </label>
+</div>

@@ -1,0 +1,172 @@
+:host {
+  display: block;
+}
+
+.ttt-switch {
+  --color-unchecked: var(--color-neutral-light-00);
+  --border-color: var(color-neutral-dark-70);
+  --track-unchecked: var(--color-neutral-light-20);
+  --color-checked: var(--color-action-default);
+  --track-checked: var(--color-brand-01-light);
+  --color-unchecked-hover: var(--color-brand-01-lightest);
+  --color-checked-hover: var(--color-action-hover);
+  --outline-color-focused: var(--color-action-focus);
+  --color-unchecked-disabled: var(--color-neutral-light-20);
+  --color-checked-disabled: var(--color-action-disabled);
+
+  --border-width-md: 1px;
+  --border-width-lg: 2px;
+  --key-size: 1.5rem; 
+  --track-height: 1rem; 
+  --track-width: 3rem;
+
+  &.disabled {
+    cursor: not-allowed !important;
+
+    * {
+      cursor: not-allowed !important;
+    }
+  }
+}
+
+.ttt-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 14px;
+  line-height: 1.3;
+  position: relative;
+}
+
+.ttt-switch input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.ttt-switch-slider {
+  position: relative;
+  display: inline-block;
+  width: var(--track-width);
+  height: var(--track-height);
+  background-color: var(--track-unchecked);
+  border-radius: calc(var(--track-height) / 2);
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+
+.ttt-switch-slider::before {
+  content: "";
+  position: absolute;
+  height: var(--key-size);
+  width: var(--key-size);
+  left: -4px;
+  top: calc((var(--track-height) - var(--key-size)) / 2);
+  background-color: var(--color-unchecked);
+  border-radius: 50%;
+  border-style: solid;
+  border-width: var(--border-width-md);
+  border-color: var(--border-color);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.ttt-switch-slider::after {
+  content: "";
+  position: absolute;
+  height: var(--key-size);
+  width: var(--key-size);
+  left: -4px;
+  top: calc((var(--track-height) - var(--key-size)) / 2);
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+
+  /* Sem ícone no estado unchecked - apenas posicionamento */
+  background-size: 12px 12px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Estado checked */
+.ttt-switch input[type="checkbox"]:checked + .ttt-switch-slider {
+  background-color: var(--track-checked);
+}
+
+.ttt-switch input[type="checkbox"]:checked + .ttt-switch-slider::before {
+  background-color: var(--color-checked);
+  border-color: transparent;
+  transform: translateX(calc(var(--track-width) - var(--key-size) + 4px));
+}
+
+/* Ícone de check APENAS para estado checked */
+.ttt-switch input[type="checkbox"]:checked + .ttt-switch-slider::after {
+  transform: translateX(calc(var(--track-width) - var(--key-size) + 4px));
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20,6 9,17 4,12'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+/* Estado hover - unchecked */
+.ttt-switch:hover:not(.disabled)
+  input[type="checkbox"]:not(:checked)
+  + .ttt-switch-slider::before {
+  background-color: var(--color-unchecked-hover);
+  border-color: var(--color-checked-hover);
+}
+
+.ttt-switch:hover:not(.disabled) {
+  cursor: pointer;
+}
+
+/* Estado hover - checked */
+.ttt-switch:hover:not(.disabled)
+  input[type="checkbox"]:checked
+  + .ttt-switch-slider::before {
+  background-color: var(--color-checked-hover);
+}
+
+/* Estado disabled - unchecked */
+.ttt-switch.disabled,
+.ttt-switch input[type="checkbox"]:disabled {
+  cursor: not-allowed;
+}
+
+.ttt-switch.disabled
+  input[type="checkbox"]:not(:checked)
+  + .ttt-switch-slider::before,
+.ttt-switch
+  input[type="checkbox"]:disabled:not(:checked)
+  + .ttt-switch-slider::before {
+  background-color: var(--color-unchecked-disabled);
+  border-color: var(--color-checked-disabled);
+}
+
+/* Estado disabled - checked */
+.ttt-switch.disabled
+  input[type="checkbox"]:checked
+  + .ttt-switch-slider::before,
+.ttt-switch
+  input[type="checkbox"]:disabled:checked
+  + .ttt-switch-slider::before {
+  background-color: var(--color-checked-disabled);
+}
+
+.ttt-switch.disabled input[type="checkbox"]:checked + .ttt-switch-slider,
+.ttt-switch input[type="checkbox"]:disabled:checked + .ttt-switch-slider {
+  background-color: var(--track-unchecked);
+}
+
+/* Label do switch */
+.ttt-switch-label {
+  color: var(--color-brand-01-darker);
+  font-weight: 400;
+  user-select: none;
+}
