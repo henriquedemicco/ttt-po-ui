@@ -1,4 +1,4 @@
-import { Component, forwardRef, inject, input, output } from '@angular/core';
+import { Component, effect, forwardRef, inject, input, output } from '@angular/core';
 import { PoSelectOption } from './interfaces/po-select-option.interface';
 import { PoModule } from '@po-ui/ng-components';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
@@ -27,16 +27,38 @@ export class SelectComponent implements ControlValueAccessor {
   selectedValue = output<string | number>();
   emitedEvent = output<Event>();
 
-  // Callbacks do ControlValueAccessor
-  private onChangeFn = (value: string) => {};
+  constructor() {
+    effect(() => {
+      const currentOptions = this.options();
+      const hasValidOptions = currentOptions.length > 0 && 
+                             currentOptions.some(option => !option.isDisabled);
+      
+      if (!hasValidOptions && this.instruction() && this.value) {
+        this.resetToInstruction();
+      }
+    });
+  }
+
+  private onChangeFn = (value: string | null) => {};
   private onTouchedFn = () => {};
 
-  // Implementações do ControlValueAccessor
+  get hasValidOptions(): boolean {
+    return this.options().length > 0 && 
+           this.options().some(option => !option.isDisabled);
+  }
+
+
+  private resetToInstruction(): void {
+    this.value = '';
+    this.onChangeFn('');
+    this.selectedValue.emit('');
+  }
+
   writeValue(value: string): void {
     this.value = value || '';
   }
 
-  registerOnChange(fn: (value: string) => void): void {
+  registerOnChange(fn: (value: string | null) => void): void {
     this.onChangeFn = fn;
   }
 
@@ -44,15 +66,10 @@ export class SelectComponent implements ControlValueAccessor {
     this.onTouchedFn = fn;
   }
 
-  setDisabledState(isDisabled: boolean): void {
-    // Implementação opcional para controlar o estado disabled
-  }
-
-  // Métodos para eventos
   onChange(event: Event): void {
     const target = event.target as HTMLSelectElement;
     this.value = target.value;
-    this.onChangeFn(this.value);
+    this.onChangeFn(this.value || null);
     this.selectedValue.emit(this.value);
   }
 

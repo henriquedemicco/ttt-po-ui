@@ -4,9 +4,9 @@
 // =============================================================================
 
 :host {
-  position: relative;
+  display: block;
   padding: 0.5em 0.5em;
-  
+  position: relative;
   // Propriedades específicas do Select usando tokens globais
   --select-text-color: var(--color-neutral-dark-90);
   --select-text-color-empty: var(--color-neutral-light-30);

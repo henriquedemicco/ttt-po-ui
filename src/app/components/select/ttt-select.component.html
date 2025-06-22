@@ -1,6 +1,5 @@
 <select class="ttt-select"
-    [value]="value"
-    [class.invalid]="true"
+    id="ttt-select"
     [name]="name()"
     (change)="onChange($event); emitEvent($event)"
     (blur)="onBlur(); emitEvent($event)"
@@ -8,7 +7,7 @@
     [disabled]="disabled()"
 >
     @if (instruction()) {
-        <option value="" selected disabled>{{ instruction() }}</option>
+        <option value="" [selected]="!value" disabled>{{ instruction() }}</option>
     }
     @for (option of options(); track $index) {
         <option [disabled]="option.isDisabled" [value]="option.value">{{ option.label }}</option>

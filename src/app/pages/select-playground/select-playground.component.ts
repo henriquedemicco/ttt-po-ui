@@ -3,6 +3,7 @@ import { PoModule } from '@po-ui/ng-components';
 import { SelectComponent } from '../../components/select/ttt-select.component';
 import { PoSelectOption } from '../../components/select/interfaces/po-select-option.interface';
 import { FormBuilder, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
+import { SelectState } from '../../components/select/interfaces/select-state.interface';
 
 @Component({
   selector: 'app-select-playground',
@@ -13,10 +14,16 @@ import { FormBuilder, FormsModule, NgForm, ReactiveFormsModule, Validators } fro
 export class SelectPlaygroundComponent {
 
   private formBuilder = inject(FormBuilder);
-  selectedValue?: string | undefined;
-  exampleTemplateFormValue?: string | undefined;
-  isDisabled: boolean = false;
+  selectedValue?: string | null;
+  exampleTemplateFormValue?: string | null;
   emitedEventType?: string;
+  selectInstruction: string = "Selecione uma opção";
+
+  selectState: SelectState = {
+    fillingInstruction: "",
+    isDisabled: false,
+    isRequired: false
+  }
 
   option?: PoSelectOption = { label: '', value: null, isDisabled: false };
 
@@ -43,6 +50,16 @@ export class SelectPlaygroundComponent {
   removeOptions() {
     this.inputedOptions.length = 0;
     this.emitedEventType = this.selectedValue = undefined;
+    this.reactiveForm.reset();
+    this.exampleTemplateFormValue = this.selectedValue = null;
+  }
+
+  resetStateManagerForm() {
+    this.selectState = {
+      fillingInstruction: "",
+      isDisabled: false,
+      isRequired: false
+    }
   }
 
   handleNewReceivedEvent(event: Event | FocusEvent) {
