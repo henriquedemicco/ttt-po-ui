@@ -28,10 +28,10 @@ export class AppComponent {
   menuItemSelected?: string;
 
   menus: Array<PoMenuItem> = [
-    { label: 'Início', icon: 'an an-user', action: this.navigateTo.bind(this, "home"), shortLabel: 'Início' },
+    { label: 'Início', icon: 'an an-house-line', action: this.navigateTo.bind(this, "home"), shortLabel: 'Início' },
     {
       label: 'Componentes',
-      icon: 'an an-share',
+      icon: 'an an-code-block',
       shortLabel: 'Componentes',
       subItems: [
         { label: 'Select', action: this.navigateTo.bind(this, "select"), },
