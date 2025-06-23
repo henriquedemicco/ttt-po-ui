@@ -1,4 +1,4 @@
-import { Component, forwardRef, input, output, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, forwardRef, inject, input, output, signal } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -15,6 +15,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ],
 })
 export class SwitchComponent implements ControlValueAccessor {
+
+  private cdr = inject(ChangeDetectorRef);
+
   label = input<string>('', { alias: 't-label' });
   switchId = signal(`ttt-switch-${Math.random().toString(36).substring(2, 9)}`);
   disabled = input<boolean>(false, { alias: 't-disabled' });
@@ -26,7 +29,8 @@ export class SwitchComponent implements ControlValueAccessor {
   private onTouchedFn = () => {};
 
   writeValue(value: boolean): void {
-    this.value.set(value ?? false);
+    this.value.set(!!value);
+    this.cdr.detectChanges(); 
   }
 
   registerOnChange(fn: (value: boolean) => void): void {
