@@ -1,6 +1,6 @@
-# PO-UI Components Test - Angular 19
+# Teste Técnico Totvs
 
-Este projeto foi desenvolvido como parte do teste técnico para Analista Pleno+ da Totvs, implementando dois componentes customizados: **Select** e **Switch**.
+Este projeto foi desenvolvido como parte do teste técnico para Dev Front-end Pleno da Totvs, implementando dois componentes customizados: **Select** e **Switch**.
 
 ## 📋 Sobre o Teste
 

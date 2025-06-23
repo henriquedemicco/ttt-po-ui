@@ -1,10 +1,9 @@
 import { Component, forwardRef, input, output, signal } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { PoModule } from '@po-ui/ng-components';
 
 @Component({
   selector: 'ttt-switch',
-  imports: [PoModule],
+  imports: [],
   templateUrl: './ttt-switch.component.html',
   styleUrl: './ttt-switch.component.scss',
   providers: [

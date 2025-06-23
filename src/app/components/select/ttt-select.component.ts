@@ -1,11 +1,10 @@
-import { Component, effect, forwardRef, inject, input, output, signal } from '@angular/core';
+import { Component, effect, forwardRef, input, output, signal } from '@angular/core';
 import { PoSelectOption } from './interfaces/po-select-option.interface';
-import { PoModule } from '@po-ui/ng-components';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'ttt-select',
-  imports: [PoModule],
+  imports: [],
   templateUrl: './ttt-select.component.html',
   styleUrl: './ttt-select.component.scss',
   providers: [

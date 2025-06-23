@@ -1,12 +1,21 @@
 import { Component, inject, ViewChild } from '@angular/core';
-import { PoModule } from '@po-ui/ng-components';
+import { PoButtonModule, PoFieldModule, PoInfoModule, PoInputComponent, PoPageModule, PoTabsModule } from '@po-ui/ng-components';
 import { SwitchComponent } from '../../components/switch/ttt-switch.component';
 import { FormBuilder, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { SwitchState } from '../../components/switch/interfaces/switch-state.interface';
 
 @Component({
   selector: 'app-switch-playground',
-  imports: [PoModule, SwitchComponent, FormsModule, ReactiveFormsModule],
+  imports: [
+    PoPageModule,
+    PoInfoModule,
+    PoFieldModule,
+    PoTabsModule,
+    PoButtonModule,
+    SwitchComponent, 
+    FormsModule, 
+    ReactiveFormsModule
+  ],
   templateUrl: './switch-playground.component.html',
   styleUrl: './switch-playground.component.scss'
 })

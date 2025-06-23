@@ -1,5 +1,5 @@
 import { Component, inject, ViewChild } from '@angular/core';
-import { PoModule } from '@po-ui/ng-components';
+import { PoButtonModule, PoFieldModule, PoInfoModule, PoPageModule, PoTabsModule } from '@po-ui/ng-components';
 import { SelectComponent } from '../../components/select/ttt-select.component';
 import { PoSelectOption } from '../../components/select/interfaces/po-select-option.interface';
 import { FormBuilder, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -9,7 +9,11 @@ import { SwitchComponent } from '../../components/switch/ttt-switch.component';
 @Component({
   selector: 'app-select-playground',
   imports: [
-    PoModule, 
+    PoPageModule,
+    PoInfoModule,
+    PoFieldModule,
+    PoButtonModule,
+    PoTabsModule,
     FormsModule, 
     ReactiveFormsModule,
     SelectComponent,
